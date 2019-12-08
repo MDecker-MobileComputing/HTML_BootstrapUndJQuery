@@ -1,29 +1,39 @@
 /* This file is licensed under the terms of the BSD 3-Clause License. */
 
 /*
- * Event-Handler für Button "Tu es!"
- *
- * JavaScript-Methoden von Bootstrap-Toast: https://getbootstrap.com/docs/4.4/components/toasts/#methods
+ * Event-Handler für Button "Begrüße mich!"
  */
-function buttonEventHandler() { "use strict";
-
-    // Sicherstellen, dass Toast-Objekt nicht angezeigt wird.
-    $(".toast").toast("dispose");
-
-
+function begruessenButtonEventHandler() { "use strict";
+        
     // Aktuellen Inhalt von <input> auslesen und ggf. Leerzeichen am Anfang/Ende entfernen
     var name = $("#eingabeName").val().trim();
 
     if (name.length === 0) {
 
-        $(".toast-body").text("Bitte Name eingeben!");
+        $("#begruessungsAlert").hide();
 
+        $("#fehlertext" ).text("Bitte Name eingeben!");
+        $("#fehlerToast").toast("show");
+        
     } else {
 
-        $(".toast-body").text("Hallo " + name + "!");
-    }
+        $("#fehlerToast"      ).toast("hide");
 
-    $(".toast").toast("show");
+        $("#begruessungstext" ).text("Hallo " + name + "!");
+        $("#begruessungsAlert").show();
+    }
+}
+
+
+/*
+ * Event-Handler für Button "Zurücksetzen".
+ */
+function zuruecksetzenButtonEventHandler() {  "use strict";
+
+    $("#eingabeName").val(""); // <input>-Element leeren
+    
+    $("#begruessungsAlert").hide();
+    $("#fehlerToast"      ).toast("hide");
 }
 
 
@@ -32,7 +42,9 @@ function buttonEventHandler() { "use strict";
  */
 function onSeiteGeladen() { "use strict";
 
-    $("#derButton").click( buttonEventHandler );
+    $("#begruessenButton"   ).click( begruessenButtonEventHandler    );
+    $("#zuruecksetzenButton").click( zuruecksetzenButtonEventHandler );
+
     console.log("Button-Event-Handler registriert.");
 }
 
