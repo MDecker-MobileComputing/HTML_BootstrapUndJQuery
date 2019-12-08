@@ -8,19 +8,20 @@ function begruessenButtonEventHandler() { "use strict";
     // Aktuellen Inhalt von <input> auslesen und ggf. Leerzeichen am Anfang/Ende entfernen
     var name = $("#eingabeName").val().trim();
 
+
     if (name.length === 0) {
 
-        $("#begruessungsAlert").hide();
+        $("#begruessungsAlert").addClass("d-none");
 
         $("#fehlertext" ).text("Bitte Name eingeben!");
         $("#fehlerToast").toast("show");
         
     } else {
 
-        $("#fehlerToast"      ).toast("hide");
+        $("#fehlerToast").toast("hide");
 
         $("#begruessungstext" ).text("Hallo " + name + "!");
-        $("#begruessungsAlert").show();
+        $("#begruessungsAlert").removeClass("d-none");
     }
 }
 
@@ -31,8 +32,8 @@ function begruessenButtonEventHandler() { "use strict";
 function zuruecksetzenButtonEventHandler() {  "use strict";
 
     $("#eingabeName").val(""); // <input>-Element leeren
-    
-    $("#begruessungsAlert").hide();
+
+    $("#begruessungsAlert").addClass("d-none");
     $("#fehlerToast"      ).toast("hide");
 }
 
