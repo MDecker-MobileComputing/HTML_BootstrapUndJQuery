@@ -9,7 +9,7 @@
 
     <link   href="../bootstrap.min.css" rel="stylesheet" />
     <script src="../bootstrap.min.js"></script><!-- Wird für Toast benötigt. -->
-    
+
     <script src="meinCode.js"></script>
 </head>
 <body>
@@ -20,20 +20,20 @@
 
         <div class="row justify-content-center"><!-- Spalte zentrieren -->
 
-            <form class="justify-content-center col-md-6">
+            <form class="col-md-6">
 
                 <div class="form-group">
                     <div class="form-check mb-2">
                         <input class="form-check-input" type="radio" name="meineRadioGroup" id="buchstaben" value="option1" checked>
-                        <label class="form-check-label" for="buchstaben">Nur Buchstaben</label>                                        
+                        <label class="form-check-label" for="buchstaben">Nur Buchstaben</label>
                     </div>
                     <div class="form-check mb-2">
                         <input class="form-check-input" type="radio" name="meineRadioGroup" id="buchstabenZiffern" value="option2">
-                        <label class="form-check-label" for="buchstabenZiffern">Buchstaben und Ziffern</label>                                        
+                        <label class="form-check-label" for="buchstabenZiffern">Buchstaben und Ziffern</label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="meineRadioGroup" id="buchstabenZiffernSondernzeichen" value="option3">
-                        <label class="form-check-label" for="buchstabenZiffernSondernzeichen">Buchstaben, Ziffern und Sonderzeichen</label>                                        
+                        <label class="form-check-label" for="buchstabenZiffernSondernzeichen">Buchstaben, Ziffern und Sonderzeichen</label>
                     </div>
                 </div>
 
@@ -46,18 +46,17 @@
                         <option value="30"          >Super-Sicher (30)</option>
                         <option value="50"          >Mega-Sicher  (50)</option>
                     </select>
-                </div>                
+                </div>
 
                 <button id="erzeugenButton" type="button" class="btn btn-primary mt-3">Passwort erzeugen</button>
 
-                <input id="passwortAusgabe" class="form-control mt-5" type="text" placeholder="Hier erscheint das erzeugte Passwort" readonly>
-    
+                <input id="passwortAusgabe" class="form-control mt-5" type="text"
+                       placeholder="Hier erscheint das erzeugte Passwort" readonly>
+
             </form>
 
         </div>
-     
+
     </div><!-- Container -->
 
-
 </body>
-
