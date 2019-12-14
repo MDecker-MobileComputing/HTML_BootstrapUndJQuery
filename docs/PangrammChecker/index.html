@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <title>Passwort-Generator mit Bootstrap und jQuery</title>
+    <title>Pangramm-Checker mit Bootstrap und jQuery</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script src="../jquery.min.js"></script><!-- jQuery muss vor bootstrap.min.js eingebunden werden. -->
 
     <link   href="../bootstrap.min.css" rel="stylesheet" />
-    <script src="../bootstrap.min.js"></script><!-- Wird für Toast benötigt. -->
+    <script src="../bootstrap.min.js"></script>
 
     <script src="meinCode.js"></script>
 </head>
@@ -19,14 +19,34 @@
         <div class="jumbotron mt-5">
             <h1 class="display-4">Pangramm-Checker</h1>
             <p class="lead">Ein Pangramm ist ein grammatikalisch und orthografisch korrekter Satz, der jeden Buchstaben  
-                            eines bestimmten Alphabets mindestens einmal enthält. 
-                            Ist jeder Buchstabe genau einmal enthalten, dann spricht man von einem echten Pangramm.
-                            Auf dieser Webseite können Sie Sätze darauf prüfen lassen, ob diese ein Pangramn sind.</p>
-                            
+                            eines bestimmten Alphabets mindestens einmal enthält; hierbei wird nicht zwischen Groß- und
+                            Kleinbuchstaben unterschieden. Ist jeder Buchstabe genau einmal enthalten, dann spricht man 
+                            von einem echten Pangramm. Auf dieser Webseite können Sie einen Satz eingeben und dann prüfen
+                            lassen, ob es sich um ein Pangramm handelt.</p>                                                               
             <hr class="my-4"><!-- m: margin; y: top+bottom -->
             <p>Weitere Erläuterungen und Beispiele finden Sie im zugehörigen Artikel in der deutschsprachigen Wikipedia.</p>
             <a class="btn btn-primary btn-lg" href="https://de.wikipedia.org/wiki/Pangramm#Sprachbeispiele" 
                target="_blank" role="button">Wikipedia-Artikel "Pangramm" öffnen</a>
+        </div>
+
+
+        <div class="input-group mt-5">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="alphabetAuswahl">Alphabet auswählen</label>
+            </div>
+            <select id="alphabetAuswahl" class="custom-select">
+              <option value="en"  >Englisch</option>
+              <option value="de_1">Deutsch (Umlaute)</option>
+              <option value="de_2">Deutsch (Umlaute + Eszett)</option>
+            </select>
+        </div>
+
+        <div class="input-group mt-4">
+            <!--<input type="text" class="form-control" placeholder="Hier zu überprüfenden Satz eingeben" aria-describedby="button-addon2">-->
+            <textarea id="eingabeSatz" class="form-control" placeholder="Hier zu überprüfenden Satz eingeben"></textarea>
+            <div class="input-group-append">
+              <button id="startButton" class="btn btn-outline-primary" type="button">Satz überprüfen</button>
+            </div>
         </div>
 
     </div><!-- Container -->
