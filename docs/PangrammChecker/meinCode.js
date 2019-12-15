@@ -202,7 +202,7 @@ function buttonEventHandler() { "use strict";
 
 
     // Ergebnis-Text für Dialog erstellen
-    let ergebnisString = "";
+    
     if (ergebnisObjekt.istPangramm) {
         $("#dialogAbsatz1").text("Der Satz ist ein Pangramm!");
         $("#dialogAbsatz2").text(`Anzahl Zeichen: ${satz.length}`);
