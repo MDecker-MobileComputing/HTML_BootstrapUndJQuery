@@ -177,22 +177,6 @@ function pangrammCheck(satz, alphabetCode) { "use strict";
 
 
 /**
- * Zeigt modalen Dialog an, d.h. die Nutzeroberfläche der Anwendung wird gesperrt
- * bis der Dialog weggeklickt wird.
- *
- * @param titel  Titel des Dialogs
- * @param inhalt  Text des Dialogs
- */
-function inDialogAnzeigen(titel, inhalt) {
-
-    $("#dialogTitel" ).text(titel);
-    $("#dialogInhalt").text(inhalt);
-
-    $('#modalerDialog').modal('show');
-}
-
-
-/**
  * Event-Handler-Funktion für den Button "Satz überprüfen".
  */
 function buttonEventHandler() { "use strict";
@@ -201,10 +185,14 @@ function buttonEventHandler() { "use strict";
 
 	if (satz.length === 0) {
 
-        inDialogAnzeigen("Ungültige Eingabe",
-                         "Keinen Satz zum Überprüfen eingegeben.");
-		return;
+        $("#dialogTitel"  ).text("Ungültige Eingabe");
+        $("#dialogAbsatz1").text("Keinen Satz zum Überprüfen eingegeben.");
+
+        $("#modalerDialog").modal("show");
+
+		return; // Abbruch der Funktion
 	}
+
 
     let alphabetCode = $("#alphabetAuswahl").val();
 
@@ -216,17 +204,22 @@ function buttonEventHandler() { "use strict";
     // Ergebnis-Text für Dialog erstellen
     let ergebnisString = "";
     if (ergebnisObjekt.istPangramm) {
-        ergebnisString = "Der Satz ist ein Pangramm!";
+        $("#dialogAbsatz1").text("Der Satz ist ein Pangramm!");
+        $("#dialogAbsatz2").text(`Anzahl Zeichen: ${satz.length}`);
     } else {
-        ergebnisString = "Der Satz ist KEIN Pangramm!";
-        ergebnisString += `Es fehlen die folgenden Buchstaben: ${ergebnisObjekt.fehlendeBuchstaben}`;
+        $("#dialogAbsatz1").text("Der Satz ist leider KEIN Pangramm!");
+        $("#dialogAbsatz2").text(`Es fehlen die folgenden Buchstaben: ${ergebnisObjekt.fehlendeBuchstaben}`);
     }
 
     if (ergebnisObjekt.zeichenAusserhalbAlphabet.length > 0) {
-        ergebnisString += `Zeichen außerhalb des Alphabets: ${ergebnisObjekt.zeichenAusserhalbAlphabet}`;
+        $("#dialogAbsatz3").text(`Zeichen außerhalb des Alphabets: ${ergebnisObjekt.zeichenAusserhalbAlphabet}`);
+    } else {
+        $("#dialogAbsatz3").text("");
     }
 
-    inDialogAnzeigen("Ergebnis", ergebnisString);
+    $("#dialogTitel").text("Ergebnis");
+
+    $("#modalerDialog").modal("show");
 }
 
 
