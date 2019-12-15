@@ -14,6 +14,7 @@ function istEnglBuchstaben(zeichenCode) {
     }
 }
 
+
 /**
  * Funktion liefert genau dann true zurück, wenn zeichenCode ein Umlaut (Kleinbuchtsabe) ist.
  *  ä=228, ö=246, ü=252
@@ -28,6 +29,7 @@ function istUmlaut(zeichenCode) {
         return false;
     }
 }
+
 
 /**
  * Funktion liefert genau dann true zurück, wenn zeichenCode ein Eszett (ß)
@@ -49,9 +51,9 @@ function istEszett(zeichenCode) {
  * 
  * @param alphabet  "en" (Englisch, a-z), "de_1" (Englisch+Umlaute), "de_2" (Englisch+Umlaute+Eszett)
  * 
- * @return Objekt mit folgenden Attributen: zeichenAusserhalbAlphabet (String ohne Duplikate), 
- *                                          fehlenderBuchstabe (String ohne Duplikate)
- *                                          istPangramm=true|false
+ * @return Objekt mit folgenden Attributen: zeichenAusserhalbAlphabet (String ohne Duplikate, nicht sortiert), 
+ *                                          fehlenderBuchstabe (String ohne Duplikate, sortiert)
+ *                                          istPangramm=true|false (true gdw. fehlenderBuchstabe.length===0)
  */
 function pangrammCheck(satz, alphabetCode) { "use strict";
 
@@ -67,6 +69,7 @@ function pangrammCheck(satz, alphabetCode) { "use strict";
     }
 
     const zeichenZumIgnorieren = " .,?!\"'";
+	
 
     // Zeichen in Satz zählen
 
@@ -77,12 +80,15 @@ function pangrammCheck(satz, alphabetCode) { "use strict";
         // Beispiele: a=97, z=122, ä=228, ö=246, ü=252, ß=223
         let zeichen     = satz.charAt(i);
         let zeichenCode = satz.charCodeAt(i);
+     
+		let zeichenIgnorieren = false;
+        if (zeichenZumIgnorieren.indexOf(zeichen) > -1) { zeichenIgnorieren = true; }
 
-        console.log(`Zeichen "${satz.charAt(i)}" hat Code "${zeichenCode}"`);
-
-        // Leerzeichen ignorieren
-        if (zeichenZumIgnorieren.indexOf(zeichen) > -1) { continue; }
-
+		//console.log(`Zeichen "${satz.charAt(i)}" hat UTF16-Code ${zeichenCode} (ignorieren=${zeichenIgnorieren})`);
+		console.log(`Zeichen "${satz.charAt(i)}" hat UTF16-Code ${zeichenCode} ${zeichenIgnorieren ? "(ignorieren)" : ""}`);
+		
+		if (zeichenIgnorieren) { continue; }
+		
 
         switch (alphabetCode) {
 
@@ -144,7 +150,7 @@ function pangrammCheck(satz, alphabetCode) { "use strict";
 
     // Prüfung auf Eszett (ß=223)
     if (alphabetCode === "de_2") {
-        if (zaehlerVektor[223] === 0) { fehlenderBuchstabe += "?"; }
+        if (zaehlerVektor[223] === 0) { fehlenderBuchstabe += "ß"; }
     }
 
 
@@ -170,6 +176,11 @@ function buttonEventHandler() { "use strict";
 
     let satz = $("#eingabeSatz").val().trim();
     console.log(`Satz: ${satz}`);
+	
+	if (satz.length === 0) {
+		console.log("Leere Eingabe, kann nichts überprüfen.");
+		return;
+	}
 
     let alphabetCode = $("#alphabetAuswahl").val();
     console.log(`Alphabet: ${alphabetCode}`);
