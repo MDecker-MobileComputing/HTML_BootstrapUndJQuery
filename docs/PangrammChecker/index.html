@@ -18,14 +18,14 @@
 
         <div class="jumbotron mt-5">
             <h1 class="display-4">Pangramm-Checker</h1>
-            <p class="lead">Ein Pangramm ist ein grammatikalisch und orthografisch korrekter Satz, der jeden Buchstaben  
+            <p class="lead">Ein Pangramm ist ein grammatikalisch und orthografisch korrekter Satz, der jeden Buchstaben
                             eines bestimmten Alphabets mindestens einmal enthält; hierbei wird nicht zwischen Groß- und
-                            Kleinbuchstaben unterschieden. Ist jeder Buchstabe genau einmal enthalten, dann spricht man 
+                            Kleinbuchstaben unterschieden. Ist jeder Buchstabe genau einmal enthalten, dann spricht man
                             von einem echten Pangramm. Auf dieser Webseite können Sie einen Satz eingeben und dann prüfen
-                            lassen, ob es sich um ein Pangramm handelt.</p>                                                               
+                            lassen, ob es sich um ein Pangramm handelt.</p>
             <hr class="my-4"><!-- m: margin; y: top+bottom -->
             <p>Weitere Erläuterungen und Beispiele finden Sie im zugehörigen Artikel in der deutschsprachigen Wikipedia.</p>
-            <a class="btn btn-primary btn-lg" href="https://de.wikipedia.org/wiki/Pangramm#Sprachbeispiele" 
+            <a class="btn btn-primary btn-lg" href="https://de.wikipedia.org/wiki/Pangramm#Sprachbeispiele"
                target="_blank" role="button">Wikipedia-Artikel "Pangramm" öffnen</a>
         </div>
 
@@ -41,7 +41,7 @@
             </select>
         </div>
 
-        <div class="input-group mt-4">
+        <div class="input-group mt-4 mb-5">
             <!--<input type="text" class="form-control" placeholder="Hier zu überprüfenden Satz eingeben" aria-describedby="button-addon2">-->
             <textarea id="eingabeSatz" class="form-control" placeholder="Hier zu überprüfenden Satz eingeben"></textarea>
             <div class="input-group-append">
@@ -50,5 +50,26 @@
         </div>
 
     </div><!-- Container -->
+
+
+    <!-- Modaler Dialog mit Bootstrap, siehe auch https://getbootstrap.com/docs/4.4/components/modal/-->
+    <div id="modalerDialog" class="modal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="dialogTitel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 id="dialogTitel" class="modal-title">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p id="dialogInhalt"></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Schließen</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
 </body>

@@ -2,8 +2,10 @@
 
 /**
  * Funktion liefert genau dann true zurück, wenn zeichenCode ein engl. Kleinbuchstabe ist.
- * 
+ *
  * @param zeichenCode  UTF-16-Code für Zeichen
+ *
+ * @return true gdw. zeichenCode für Buchstabe a-z
  */
 function istEnglBuchstaben(zeichenCode) {
 
@@ -18,8 +20,10 @@ function istEnglBuchstaben(zeichenCode) {
 /**
  * Funktion liefert genau dann true zurück, wenn zeichenCode ein Umlaut (Kleinbuchtsabe) ist.
  *  ä=228, ö=246, ü=252
- * 
+ *
  * @param zeichenCode  UTF-16-Code für Zeichen
+ *
+ * @return true gdw. zeichenCode für Umlaut (ä,ö,ü)
  */
 function istUmlaut(zeichenCode) {
 
@@ -34,8 +38,10 @@ function istUmlaut(zeichenCode) {
 /**
  * Funktion liefert genau dann true zurück, wenn zeichenCode ein Eszett (ß)
  * enthält, nämlich den UTF-16-Code 223.
- * 
- * * @param zeichenCode  UTF-16-Code für Zeichen
+ *
+ * @param zeichenCode  UTF-16-Code für Zeichen
+ *
+ * @return true gdw. zeichenCode für Eszett (ß)
  */
 function istEszett(zeichenCode) {
 
@@ -46,14 +52,15 @@ function istEszett(zeichenCode) {
 /**
  * Funktion mit eigentlichem Pangramm-Checker. Diese Funktion enthält keinen
  * jQuery- oder Bootstrap-spezifischen Code.
- * 
+ *
  * @param satz  Auf Pangramm-Eigenschaft zu überprüfender Satz.
- * 
+ *
  * @param alphabet  "en" (Englisch, a-z), "de_1" (Englisch+Umlaute), "de_2" (Englisch+Umlaute+Eszett)
- * 
- * @return Objekt mit folgenden Attributen: zeichenAusserhalbAlphabet (String ohne Duplikate, nicht sortiert), 
- *                                          fehlenderBuchstabe (String ohne Duplikate, sortiert)
- *                                          istPangramm=true|false (true gdw. fehlenderBuchstabe.length===0)
+ *
+ * @return Objekt mit folgenden Attributen:
+ *                zeichenAusserhalbAlphabet (String ohne Duplikate, nicht sortiert),
+ *                fehlendeBuchstaben (String ohne Duplikate, sortiert),
+ *                istPangramm=true|false (true gdw. fehlenderBuchstabe.length===0)
  */
 function pangrammCheck(satz, alphabetCode) { "use strict";
 
@@ -69,7 +76,7 @@ function pangrammCheck(satz, alphabetCode) { "use strict";
     }
 
     const zeichenZumIgnorieren = " .,?!\"'";
-	
+
 
     // Zeichen in Satz zählen
 
@@ -80,15 +87,15 @@ function pangrammCheck(satz, alphabetCode) { "use strict";
         // Beispiele: a=97, z=122, ä=228, ö=246, ü=252, ß=223
         let zeichen     = satz.charAt(i);
         let zeichenCode = satz.charCodeAt(i);
-     
+
 		let zeichenIgnorieren = false;
         if (zeichenZumIgnorieren.indexOf(zeichen) > -1) { zeichenIgnorieren = true; }
 
 		//console.log(`Zeichen "${satz.charAt(i)}" hat UTF16-Code ${zeichenCode} (ignorieren=${zeichenIgnorieren})`);
 		console.log(`Zeichen "${satz.charAt(i)}" hat UTF16-Code ${zeichenCode} ${zeichenIgnorieren ? "(ignorieren)" : ""}`);
-		
+
 		if (zeichenIgnorieren) { continue; }
-		
+
 
         switch (alphabetCode) {
 
@@ -125,11 +132,11 @@ function pangrammCheck(satz, alphabetCode) { "use strict";
             default:
                 alert(`Interner Fehler: Unerwarteter Alphabet-Code ${alphabetCode}.`);
                 return;
-        }        
-    } // for 
+        }
+    } // for
 
-    
-    let fehlenderBuchstabe = "";
+
+    let fehlendeBuchstaben = "";
 
 
     // *** Prüfung auf Pangramm-Eigenschaft ***
@@ -137,29 +144,29 @@ function pangrammCheck(satz, alphabetCode) { "use strict";
     // Prüfung auf Buchstaben aus engl. Alphabet
     for (let zeichenCode = 97; zeichenCode <= 122; zeichenCode++ ) { // 97=a, 122=z
         if (zaehlerVektor[zeichenCode] === 0) {
-            fehlenderBuchstabe += String.fromCharCode(zeichenCode);
+            fehlendeBuchstaben += String.fromCharCode(zeichenCode);
         }
-    }    
+    }
 
     // Prüfung auf Umlaute (ä=228, ö=246, ü=252)
     if (alphabetCode === "de_1" || alphabetCode === "de_2") {
-        if (zaehlerVektor[228] === 0) { fehlenderBuchstabe += "ä"; }
-        if (zaehlerVektor[246] === 0) { fehlenderBuchstabe += "ö"; }
-        if (zaehlerVektor[252] === 0) { fehlenderBuchstabe += "ü"; }
+        if (zaehlerVektor[228] === 0) { fehlendeBuchstaben += "ä"; }
+        if (zaehlerVektor[246] === 0) { fehlendeBuchstaben += "ö"; }
+        if (zaehlerVektor[252] === 0) { fehlendeBuchstaben += "ü"; }
     }
 
     // Prüfung auf Eszett (ß=223)
     if (alphabetCode === "de_2") {
-        if (zaehlerVektor[223] === 0) { fehlenderBuchstabe += "ß"; }
+        if (zaehlerVektor[223] === 0) { fehlendeBuchstaben += "ß"; }
     }
 
 
     // *** Ergebnis-Attribute kopieren ***
 
     ergebnisObjekt.zeichenAusserhalbAlphabet = zeichenAusserhalbAlphabet;
-    ergebnisObjekt.fehlenderBuchstabe        = fehlenderBuchstabe; 
+    ergebnisObjekt.fehlendeBuchstaben        = fehlendeBuchstaben;
 
-    if (fehlenderBuchstabe.length === 0) {
+    if (fehlendeBuchstaben.length === 0) {
         ergebnisObjekt.istPangramm = true;
     } else {
         ergebnisObjekt.istPangramm = false;
@@ -170,36 +177,56 @@ function pangrammCheck(satz, alphabetCode) { "use strict";
 
 
 /**
+ * Zeigt modalen Dialog an, d.h. die Nutzeroberfläche der Anwendung wird gesperrt
+ * bis der Dialog weggeklickt wird.
+ *
+ * @param titel  Titel des Dialogs
+ * @param inhalt  Text des Dialogs
+ */
+function inDialogAnzeigen(titel, inhalt) {
+
+    $("#dialogTitel" ).text(titel);
+    $("#dialogInhalt").text(inhalt);
+
+    $('#modalerDialog').modal('show');
+}
+
+
+/**
  * Event-Handler-Funktion für den Button "Satz überprüfen".
  */
 function buttonEventHandler() { "use strict";
 
     let satz = $("#eingabeSatz").val().trim();
-    console.log(`Satz: ${satz}`);
-	
+
 	if (satz.length === 0) {
-		console.log("Leere Eingabe, kann nichts überprüfen.");
+
+        inDialogAnzeigen("Ungültige Eingabe",
+                         "Keinen Satz zum Überprüfen eingegeben.");
 		return;
 	}
 
     let alphabetCode = $("#alphabetAuswahl").val();
-    console.log(`Alphabet: ${alphabetCode}`);
+
 
     // *** Eigentliche Überprüfung ***
     let ergebnisObjekt = pangrammCheck(satz, alphabetCode);
 
+
+    // Ergebnis-Text für Dialog erstellen
+    let ergebnisString = "";
+    if (ergebnisObjekt.istPangramm) {
+        ergebnisString = "Der Satz ist ein Pangramm!";
+    } else {
+        ergebnisString = "Der Satz ist KEIN Pangramm!";
+        ergebnisString += `Es fehlen die folgenden Buchstaben: ${ergebnisObjekt.fehlendeBuchstaben}`;
+    }
+
     if (ergebnisObjekt.zeichenAusserhalbAlphabet.length > 0) {
-        console.log(`Zeichen außerhalb Alphabet: ${ergebnisObjekt.zeichenAusserhalbAlphabet}`);
-    } else {
-        console.log("Keine Zeichen außerhalb Alphabet.");
+        ergebnisString += `Zeichen außerhalb des Alphabets: ${ergebnisObjekt.zeichenAusserhalbAlphabet}`;
     }
-    
-    if (ergebnisObjekt.fehlenderBuchstabe.length > 0) {
-        console.log(`Satz ist kein Pangramm, es fehlen die folgenden Zeichen: ${ergebnisObjekt.fehlenderBuchstabe}`);
-    } else {
-        console.log("Satz ist ein Pangramm!");
-    }
-    
+
+    inDialogAnzeigen("Ergebnis", ergebnisString);
 }
 
 
