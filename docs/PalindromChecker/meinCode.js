@@ -18,6 +18,8 @@ function checkPalindrom(zeichenkette) { "use strict";
 
     let laenge = zeichenketteNormalisiert.length;
 
+    // Bei ungerader Länge der Zeichenkette (z.B. "Regal") muss der Buchstabe in der Mitte
+    // ("g" für "Regal") nicht überprüft werden, deshalb Nachkommastellen abschneiden.
     let anzahlChecks = Math.floor( laenge/2 );
 
     for (let i = 0; i < anzahlChecks; i++) {
@@ -28,7 +30,7 @@ function checkPalindrom(zeichenkette) { "use strict";
         let a = zeichenketteNormalisiert.charAt( index1 );
         let b = zeichenketteNormalisiert.charAt( index2 );
 
-        console.log(`${a}-${b}`);
+        //console.log(`${a}-${b}`);
 
         if (a !== b) { return false; }
     }
