@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <title>Palindrom-Checker mit Bootstrap und jQuery</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="../jquery.min.js"></script><!-- jQuery muss vor bootstrap.min.js eingebunden werden. -->
+
+    <link   href="../bootstrap.min.css" rel="stylesheet" />
+    <script src="../bootstrap.min.js"></script>
+
+    <script src="meinCode.js"></script>
+</head>
+<body>
+
+    <div class="container-lg">
+
+        <h1 class="mt-3">Palindrom-Checker</h1>
+
+        <p class="mt-5">
+          Ein Palindrom ist eine Zeichenfolge, die vorwärts und rückwärts gelesen identisch ist,
+          z.B. "Anna", "Rentner", "Regallager" oder "Reliefpfeiler".
+        </p>
+
+
+        <div class="input-group mt-5">
+            <div class="input-group-prepend">
+              <label id="label1" class="input-group-text" for="kandidatString">Wort:</label>
+            </div>
+
+            <input id="kandidatString" type="text" class="form-control" placeholder=""
+                   aria-label="label1" aria-describedby="button-ueberpruefen">
+
+            <div class="input-group-append">
+              <button id="button-ueberpruefen" class="btn btn-outline-primary" type="button">Überprüfen</button>
+            </div>
+
+          </div>
+    </div>
+
+</body>
