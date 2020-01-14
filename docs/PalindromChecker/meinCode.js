@@ -1,6 +1,6 @@
-/* This file is licensed under the terms of the BSD 3-Clause License. */
+/*jshint esversion: 6 */
 
-"esversion: 6";
+/* This file is licensed under the terms of the BSD 3-Clause License. */
 
 
 /**

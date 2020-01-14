@@ -1,5 +1,8 @@
 /* This file is licensed under the terms of the BSD 3-Clause License. */
 
+/*jshint esversion: 6 */
+
+
 /*
  * Funktion zum eigentlichen Erzeugen des zufälligen Passworts.
  * Das erzeugte Passwort wird als String zurückgegeben.

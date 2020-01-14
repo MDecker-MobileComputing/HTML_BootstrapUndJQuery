@@ -1,10 +1,13 @@
 /* This file is licensed under the terms of the BSD 3-Clause License. */
 
+/*jshint esversion: 6 */
+
+
 /*
  * Event-Handler für Button "Begrüße mich!"
  */
 function begruessenButtonEventHandler() { "use strict";
-        
+
     // Aktuellen Inhalt von <input> auslesen und ggf. Leerzeichen am Anfang/Ende entfernen
     var name = $("#eingabeName").val().trim();
 
@@ -15,7 +18,7 @@ function begruessenButtonEventHandler() { "use strict";
 
         $("#fehlertext" ).text("Bitte Name eingeben!");
         $("#fehlerToast").toast("show");
-        
+
     } else {
 
         $("#fehlerToast").toast("hide");
@@ -50,4 +53,4 @@ function onSeiteGeladen() { "use strict";
 }
 
 
-$(document).ready( onSeiteGeladen ); 
+$(document).ready( onSeiteGeladen );

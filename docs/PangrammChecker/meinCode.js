@@ -1,4 +1,7 @@
+/*jshint esversion: 6 */
+
 /* This file is licensed under the terms of the BSD 3-Clause License. */
+
 
 /**
  * Funktion liefert genau dann true zurück, wenn zeichenCode ein engl. Kleinbuchstabe ist.
@@ -10,8 +13,11 @@
 function istEnglBuchstaben(zeichenCode) {
 
     if (zeichenCode >= 97 && zeichenCode <= 122) {
+
         return true;
+
     } else {
+
         return false;
     }
 }
@@ -28,8 +34,11 @@ function istEnglBuchstaben(zeichenCode) {
 function istUmlaut(zeichenCode) {
 
     if (zeichenCode === 228 || zeichenCode === 246 || zeichenCode === 252) {
+
         return true;
+
     } else {
+
         return false;
     }
 }
@@ -72,6 +81,7 @@ function pangrammCheck(satz, alphabetCode) { "use strict";
 
     let zaehlerVektor = new Array(253); // 252 ist höchste Code eines Zeichen in einem unterstützten Alphabet
     for (let i = 0; i < zaehlerVektor.length; i++) {
+
         zaehlerVektor[i] = 0;
     }
 
@@ -150,6 +160,7 @@ function pangrammCheck(satz, alphabetCode) { "use strict";
 
     // Prüfung auf Umlaute (ä=228, ö=246, ü=252)
     if (alphabetCode === "de_1" || alphabetCode === "de_2") {
+
         if (zaehlerVektor[228] === 0) { fehlendeBuchstaben += "ä"; }
         if (zaehlerVektor[246] === 0) { fehlendeBuchstaben += "ö"; }
         if (zaehlerVektor[252] === 0) { fehlendeBuchstaben += "ü"; }
@@ -157,6 +168,7 @@ function pangrammCheck(satz, alphabetCode) { "use strict";
 
     // Prüfung auf Eszett (ß=223)
     if (alphabetCode === "de_2") {
+
         if (zaehlerVektor[223] === 0) { fehlendeBuchstaben += "ß"; }
     }
 
@@ -202,7 +214,7 @@ function buttonEventHandler() { "use strict";
 
 
     // Ergebnis-Text für Dialog erstellen
-    
+
     if (ergebnisObjekt.istPangramm) {
         $("#dialogAbsatz1").text("Der Satz ist ein Pangramm!");
         $("#dialogAbsatz2").text(`Anzahl Zeichen: ${satz.length}`);
