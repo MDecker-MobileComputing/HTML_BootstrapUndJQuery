@@ -5,6 +5,7 @@ This repository contains some HTML files which use [Bootstrap](https://getbootst
 <br>
 
 ----
+
 ## Direct view ##
 
 The HTML file in this repository can be viewed directly in your browser at [**this URL**](https://mdecker-mobilecomputing.github.io/HTML_BootstrapUndJQuery/index.html).
@@ -14,6 +15,7 @@ Short URL: http://bit.ly/34iL7Os
 <br>
 
 ----
+
 ## License ##
 
 See the [LICENSE file](LICENSE.md) for license rights and limitations (BSD 3-Clause License) for the files in this repository.
