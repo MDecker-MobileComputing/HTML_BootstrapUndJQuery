@@ -30,8 +30,6 @@ function checkPalindrom(zeichenkette) { "use strict";
         let a = zeichenketteNormalisiert.charAt( index1 );
         let b = zeichenketteNormalisiert.charAt( index2 );
 
-        //console.log(`${a}-${b}`);
-
         if (a !== b) { return false; }
     }
 
