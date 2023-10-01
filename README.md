@@ -1,4 +1,4 @@
-# Bootstrap Apps with jQuery #
+# Apps with Bootstrap 4 and jQuery #
 
 <br>
 
