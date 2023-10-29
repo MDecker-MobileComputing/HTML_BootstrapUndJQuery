@@ -9,7 +9,7 @@
 function begruessenButtonEventHandler() { "use strict";
 
     // Aktuellen Inhalt von <input> auslesen und ggf. Leerzeichen am Anfang/Ende entfernen
-    var name = $("#eingabeName").val().trim();
+    let name = $("#eingabeName").val().trim();
 
 
     if (name.length === 0) {
